@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "name": "Orange Suit",
+      "price": 1500,
+      "image": "/assets/Products/Orange.png",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 2,
+      "name": "Blue Suit",
+      "price": 800,
+      "image": "/assets/Products/Blue.png",
+      "description": "A comfortable blue cotton kurti for everyday wear."
+    }
+  ]
+  
