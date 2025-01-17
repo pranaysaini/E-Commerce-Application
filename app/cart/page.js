@@ -26,16 +26,23 @@ export default function CartPage() {
         calculateTotal();
     }, [cartItems]);
 
-  
     const handleQuantityChange = (productId, e) => {
-      const quantity = parseInt(e.target.value);
-      if (quantity > 0) {
-        updateQuantity(productId, quantity);
-      }
+      // const quantity = parseInt(e.target.value);
+      // if (quantity > 0) {
+      //   updateQuantity(productId, quantity);
+      // }
+        const newQuantity = e.target.value === '' ? '' : Number(e.target.value); // Handle empty input
+        if (!isNaN(newQuantity) && newQuantity >= 0) { // Check if quantity is a valid number (non negative)
+            updateQuantity(productId, newQuantity);
+        }
     };
 
     const calculateNetPrice = (item) => {
-        return item.price * item.quantity;
+        // return item.price * item.quantity;
+        const price = typeof item.price === 'number' ? item.price : 0;
+        const quantity = typeof item.quantity === 'number' ? item.quantity : 0;
+        return price * quantity;
+
     };
   
     return (
@@ -96,7 +103,7 @@ export default function CartPage() {
                     <p className="font-bold text-right">Grand Total: ₹{total}</p>
                 </div>
 
-                <Link href="/" className="bg-green-500 text-white px-4 py-2 rounded mt-4">
+                <Link href="/checkout" className="bg-green-500 text-white px-4 py-2 rounded mt-4">
                     Proceed to Checkout
                 </Link>
 

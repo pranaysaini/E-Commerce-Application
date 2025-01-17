@@ -1,7 +1,25 @@
+// {
+//   "compilerOptions": {
+//     "paths": {
+//       "@/*": ["./*"]
+//     }
+//   }
+// }
 {
   "compilerOptions": {
+    "baseUrl": ".", // This is the crucial line you were missing
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"], // Optional but recommended for components
+      "@/utils/*": ["./utils/*"] // If you use a utils folder
     }
-  }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.js",
+    "**/*.jsx" // Include JSX files if you use them
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
