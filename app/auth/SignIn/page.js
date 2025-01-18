@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { app } from '@/firebase';// Import your Firebase config
@@ -11,6 +11,24 @@ const SignIn = () => {
     const [error, setError] = useState(null);
     const router = useRouter();
     const auth = getAuth(app);
+    const searchParams = useSearchParams();
+
+
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const redirectUrl = searchParams.get('redirectUrl') || '/'; // Default to home if no redirect URL
+            localStorage.removeItem('redirectUrl'); // Clear the stored URL
+            router.push(redirectUrl || '/profile');
+          }
+        });
+    
+        return () => unsubscribe();
+      }, [auth, router, searchParams]);
+
+
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +36,7 @@ const SignIn = () => {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            router.push('/profile'); // Redirect to profile after successful login
+            // router.push('/profile'); // Redirect to profile after successful login
         } catch (err) {
             setError(err.message);
             console.error("Error signing in:", err)

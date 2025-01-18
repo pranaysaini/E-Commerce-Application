@@ -1,15 +1,29 @@
 'use client';
-
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/cartContext';
+import { addDoc, collection, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
+import { app, db } from '@/firebase'; // Import Firebase config
+import {auth} from '@/firebase'
+import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from 'next/navigation';
+
 
 export default function CheckoutPage() {
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, clearCart } = useContext(CartContext); // Destructure clearCart
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [formErrors, setFormErrors] = useState({}); // State for form errors
+    const [formErrors, setFormErrors] = useState({});
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          if (!currentUser) {
+            alert("Please sign in to place your order.");
+          }
+        });
+        return () => unsubscribe();
+    }, []);
 
     const calculateTotal = () => {
         if (!cartItems || cartItems.length === 0) {
@@ -23,42 +37,75 @@ export default function CheckoutPage() {
         }, 0);
     };
 
-    const handleCheckout = () => {
+
+    const fetchOrders = async (userId) => {
+        try {
+          const ordersCollection = collection(db, 'orders'); // Use db here
+          const q = query(ordersCollection, where('userId', '==', userId));
+          const querySnapshot = await getDocs(q);
+          const fetchedOrders = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setOrders(fetchedOrders);
+        } catch (error) {
+          console.error('Error fetching orders:', error);
+        }
+      };
+
+    const handleCheckout = async () => {
         let errors = {};
 
-        if (!name) {
-            errors.name = 'Name is required.';
-        }
-        if (!address) {
-            errors.address = 'Address is required.';
-        }
-        if (!phoneNumber) {
-            errors.phoneNumber = 'Phone number is required.';
-        } else if (!/^\d{10}$/.test(phoneNumber)) { // Basic 10-digit phone number validation
-            errors.phoneNumber = 'Invalid phone number. Please enter 10 digits.';
-        }
-        if (!paymentMethod) {
-            errors.paymentMethod = 'Payment method is required.';
-        }
+        if (!name) errors.name = 'Name is required.';
+        if (!address) errors.address = 'Address is required.';
+        if (!phoneNumber) errors.phoneNumber = 'Phone number is required.';
+        else if (!/^\d{10}$/.test(phoneNumber)) errors.phoneNumber = 'Invalid phone number (10 digits).';
+        if (!paymentMethod) errors.paymentMethod = 'Payment method is required.';
 
         setFormErrors(errors);
 
-        if (Object.keys(errors).length > 0) {
-            return; // Stop checkout if there are errors
+        if (Object.keys(errors).length > 0) return;
+
+        // const auth = getAuth(app);
+        const user = auth.currentUser;
+
+        if (!user) {
+            alert('Please sign in to place your order.'); // Alert the user to sign in
+            return;
         }
 
-        // Proceed with checkout if there are no errors
-        alert("Checkout Successful!");
-        console.log('Name:', name);
-        console.log('Address:', address);
-        console.log('Phone Number:', phoneNumber);
-        console.log('Payment Method:', paymentMethod);
-        console.log('Cart Items:', cartItems);
-        console.log("Total Amount:", calculateTotal());
+        try {
+            const ordersCollection = collection(db, 'orders');
+            const orderData = {
+                userId: user.uid,
+                items: cartItems.map(item => ({ // Correctly format items
+                    productId: item.id, // Assuming your cart items have an 'id'
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity
+                })),
+                totalAmount: calculateTotal(),
+                shippingAddress: { name, address, phoneNumber },
+                orderDate: serverTimestamp(),
+                status: 'pending',
+                paymentMethod,
+            };    
+                   
+            const newOrderRef = await addDoc(ordersCollection, orderData);
+            console.log('Order placed successfully:', newOrderRef.id);
+            alert('Checkout Successful! Your order ID is: ' + newOrderRef.id);
 
-        // Reset the cart (optional)
-        // localStorage.removeItem('cart');
-        // window.location.reload();
+            clearCart // Clear the cart after successful order
+            setName(''); // Clear form inputs
+            setAddress('');
+            setPhoneNumber('');
+            setPaymentMethod('');
+            setFormErrors({}); // Clear any previous errors
+
+        } catch (error) {
+            console.error('Error placing order:', error);
+            alert('An error occurred while placing your order. Please try again.');
+        }
     };
 
     return (
@@ -79,10 +126,10 @@ export default function CheckoutPage() {
                     <p className="text-xl font-semibold mt-4">Total: ₹{calculateTotal()}</p>
 
                     <div className="mt-4">
-                        <div className="mb-2"> {/* Added wrapper for label and input */}
+                        <div className="mb-2">
                             <label htmlFor="name" className="block font-medium mb-1">Name (Required):</label>
                             <input type="text" id="name" className={`border p-2 w-full ${formErrors.name ? 'border-red-500' : ''}`} value={name} onChange={(e) => setName(e.target.value)} />
-                            {formErrors.name && <p className="text-red-500 text-sm">{formErrors.name}</p>} {/* Error message */}
+                            {formErrors.name && <p className="text-red-500 text-sm">{formErrors.name}</p>}
                         </div>
 
                         <div className="mb-2">
