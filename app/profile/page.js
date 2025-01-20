@@ -14,8 +14,6 @@ const Profile = () => {
 
     const [orders, setOrders] = useState([]);
 
-
-
     const fetchOrders = async (userId) => {
         try {
           const ordersCollection = collection(db, 'orders');
@@ -81,8 +79,8 @@ const Profile = () => {
                         <div>
                             <h4>Order Items:</h4>
                             <ul>
-                                {order.items.map((item) => (
-                                <li key={item.id}>
+                                {order.items.map((item, index) => (
+                                <li key={index}>
                                     {item.name} (Quantity: {item.quantity})
                                 </li>
                                 ))}
