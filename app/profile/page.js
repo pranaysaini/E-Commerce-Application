@@ -59,7 +59,7 @@ const Profile = () => {
     }
 
     return (
-        <div className='flex flex-col bg-gradient-to-r from-slate-300 to-slate-500 h-screen w-full'>
+        <div className='flex flex-col  h-screen w-full'>
             {/* <h1 className='mt-10 ml-10 text-3xl font-bold'>Profile</h1> */}
             <p className='mt-10 ml-10 text-5xl font-extrabold bg-gradient-to-r from-slate-900 via-orange-500 to-slate-50 bg-clip-text text-transparent leading-normal'>{user.email}</p>
             <h2 className='mt-12 ml-10 text-3xl font-semibold'>Order History</h2>

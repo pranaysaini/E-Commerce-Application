@@ -110,7 +110,7 @@ export default function CheckoutPage() {
 
     return (
         <div className="p-8">
-            <h1 className="text-2xl font-bold mb-4">Checkout</h1>
+            {/* <h1 className="text-2xl font-bold mb-4">Checkout</h1> */}
 
             {cartItems.length === 0 ? (
                 <p>Your cart is empty. Add items to proceed to checkout.</p>
@@ -121,6 +121,7 @@ export default function CheckoutPage() {
                             <h2 className="text-lg font-semibold">{item.name}</h2>
                             <p>Quantity: {item.quantity}</p>
                             <p>Price: ₹{item.price}</p>
+                            
                         </div>
                     ))}
                     <p className="text-xl font-semibold mt-4">Total: ₹{calculateTotal()}</p>
@@ -155,7 +156,7 @@ export default function CheckoutPage() {
                         </div>
                     </div>
 
-                    <button className="bg-blue-500 text-white px-6 py-3 rounded" onClick={handleCheckout}>
+                    <button className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded" onClick={handleCheckout}>
                         Place Order
                     </button>
                 </div>
