@@ -26,24 +26,27 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="p-4 bg-gray-800 text-white">
-            <ul className="flex space-x-4">
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/products">Products</Link></li>
-                <li><Link href="/cart" onClick={handleCartClick}>Cart</Link></li>
+        <nav className="p-4 text-indigo-900 font-semibold text-lg">
+            <ul className="flex justify-center items-center">
+                <li className="mr-auto hover:underline"><Link href="/products">Products</Link></li>
+                <li><Link href="/"> <img src="/assets/logo.png" className='h-14' /></Link></li>
+                
+                <div className='ml-auto flex space-x-4'>
+                    <li><Link href="/cart" onClick={handleCartClick} className='hover:underline'>Cart</Link></li>
 
-                {user ? ( // User is logged in
-                    <>
-                        <li><Link href="/profile">Profile</Link></li>
-                        {/* If you still want an "Account" link with more options: */}
-                        {/* <li><Link href="/account">Account</Link></li> */}
-                    </>
-                ) : ( // User is not logged in
-                    <>
-                        <li><Link href="/auth/SignIn">Sign In</Link></li>
-                        <li><Link href="/auth/SignUp">Sign Up</Link></li>
-                    </>
-                )}
+                    {user ? ( // User is logged in
+                        <>
+                            <li className='hover:underline'><Link href="/profile">Profile</Link></li>
+                            {/* If you still want an "Account" link with more options: */}
+                            {/* <li><Link href="/account">Account</Link></li> */}
+                        </>
+                    ) : ( // User is not logged in
+                        <>
+                            <li className='hover:underline'><Link href="/auth/SignIn">Sign In</Link></li>
+                            <li className='hover:underline'><Link href="/auth/SignUp">Sign Up</Link></li>
+                        </>
+                    )}
+                </div>
             </ul>
         </nav>
     );

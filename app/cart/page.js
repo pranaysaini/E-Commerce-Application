@@ -72,21 +72,21 @@ export default function CartPage() {
 
                 <div>
                   <label htmlFor={`quantity-${item.id}`} className="mr-2">
-                    Qty:
+                    Quantity:
                   </label>
                   <input
                     id={`quantity-${item.id}`}
                     type="number"
                     value={item.quantity}
                     min="1"
-                    className="border w-12 text-center"
+                    className="border w-20 text-center mr-5 px-4 py-2 bg-red-500 text-white rounded-md font-bold"
                     onChange={(e) => handleQuantityChange(item.id, e)}
                   />
 
 
 
                     <button
-                        className="bg-red-500 text-white px-4 py-2 rounded"
+                        className="bg-gray-200 hover:bg-gray-100 text-black px-2 py-2 rounded text-sm"
                         onClick={() => removeFromCart(item.id)}
                         >
                         Remove
@@ -99,11 +99,11 @@ export default function CartPage() {
               
             ))}
 
-                <div className="flex justify-end mt-4">
-                    <p className="font-bold text-right">Grand Total: ₹{total}</p>
+                <div className="flex justify-end mt-4 mr-56">
+                    <p className="font-bold text-xl">Grand Total: ₹{total}</p>
                 </div>
 
-                <Link href="/checkout" className="bg-green-500 text-white px-4 py-2 rounded mt-4">
+                <Link href="/checkout" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-4 rounded mt-4 ml-56">
                     Proceed to Checkout
                 </Link>
 
