@@ -1,17 +1,133 @@
 [
     {
       "id": 1,
-      "name": "Orange Suit",
+      "sku":"GBMBJ11",
+      "name": "Men Bikers Jacket",
       "price": 1500,
-      "image": "/assets/Products/Orange.png",
-      "description": "A beautiful Orange kurti with intricate designs."
+      "image": "/assets/Products/Men/Men Bikers Jacket.avif",
+      "description": "A beautiful Orange kurti with intricate designs.",
+      "category": "Men"
     },
     {
       "id": 2,
-      "name": "Blue Suit",
+      "sku":"GBMBJ12",
+      "name": "Men Graphic Indigo Sweatshirt",
+      "price": 1200,
+      "image": "/assets/Products/Men/Men Graphic Indigo Sweatshirt.avif",
+      "description": "A beautiful Orange kurti with intricate designs.",
+      "category": "Men"
+    },
+    {
+      "id": 3,
+      "sku":"GBMBJ13",
+      "name": "Men Graphic Print Hoodie",
+      "price": 1028,
+      "image": "/assets/Products/Men/Men Graphic Print Hoodie.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 4,
+      "sku":"GBMBJ14",
+      "name": "Men Graphic White Sweatshirt",
+      "price": 1200,
+      "image": "/assets/Products/Men/Men Graphic White Sweatshirt.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 5,
+      "sku":"GBMBJ15",
+      "name": "Men Hodded Jacket",
+      "price": 1100,
+      "image": "/assets/Products/Men/Men Hodded Jacket.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 6,
+      "sku":"GBMBJ16",
+      "name": "Men Regular Fit Black Jacket",
+      "price": 1100,
+      "image": "/assets/Products/Men/Men Regular Fit Black Jacket.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 7,
+      "sku":"GBMBJ17",
+      "name": "Men Regular Fit Tracksuit",
+      "price": 1350,
+      "image": "/assets/Products/Men/Men Regular Fit Tracksuit.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 8,
+      "sku":"GBMBJ18",
+      "name": "Men Relaxed Fit Cargo Pants",
+      "price": 560,
+      "image": "/assets/Products/Men/Men Relaxed Fit Cargo Pants.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 9,
+      "sku":"GBMBJ21",
+      "name": "Women Graphic Hoodie",
+      "price": 1900,
+      "image": "/assets/Products/women/Women Graphic Hoodie.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 10,
+      "sku":"GBWBJ22",
+      "name": "Ribbed Round Neck Pullovers",
+      "price": 1600,
+      "image": "/assets/Products/women/Ribbed Round Neck Pullovers.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 11,
+      "sku":"GBWBJ23",
+      "name": "Women Regular Fit Jacket",
+      "price": 1600,
+      "image": "/assets/Products/women/Women Regular Fit Jacket.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 12,
+      "sku":"GBWBJ24",
+      "name": "Ankle Length Leggings",
       "price": 800,
-      "image": "/assets/Products/Blue.png",
-      "description": "A comfortable blue cotton kurti for everyday wear."
+      "image": "/assets/Products/women/Ankle Length Leggings.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 13,
+      "sku":"GBWBJ25",
+      "name": "Woman Floral Print Kurta",
+      "price": 2500,
+      "image": "/assets/Products/women/Women Floral Print Kurta.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 14,
+      "sku":"GBWBJ26",
+      "name": "Women Oversized Fit Sweatshirt",
+      "price": 1500,
+      "image": "/assets/Products/women/Women Oversized Fit Sweatshirt.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 15,
+      "sku":"GBWBJ27",
+      "name": "Women Regular Fit Black T-Shirt",
+      "price": 1200,
+      "image": "/assets/Products/women/Women Regular Fit Black T-Shirt.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
+    },
+    {
+      "id": 16,
+      "sku":"GBWB28",
+      "name": "Women Regular Fit Pink T-shirt",
+      "price": 1200,
+      "image": "/assets/Products/women/Women Regular Fit Pink T-shirt.avif",
+      "description": "A beautiful Orange kurti with intricate designs."
     }
   ]
   
