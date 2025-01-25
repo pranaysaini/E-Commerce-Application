@@ -156,7 +156,7 @@ export default function CheckoutPage() {
                         </div>
                     </div>
 
-                    <button className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded" onClick={handleCheckout}>
+                    <button className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded " onClick={handleCheckout}>
                         Place Order
                     </button>
                 </div>

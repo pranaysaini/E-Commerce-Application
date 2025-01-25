@@ -46,71 +46,162 @@ export default function CartPage() {
     };
   
     return (
-      <div className="p-8">
-        <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <div className="space-y-4">
-            {cartItems.map((item) => (
-              <div
-                key={item.id}
-                className="border p-4 flex items-center justify-between"
-              >
-                <div className="flex items-center space-x-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-16 h-16 object-cover"
-                  />
-                  <div>
-                    <h2 className="text-lg font-semibold">{item.name}</h2>
-                    <p className="text-gray-700">₹{item.price}</p>
-                  </div>
+
+
+      <>
+
+        <div className="hidden md:block">
+
+              <div className="p-8">
+              <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
+              {cartItems.length === 0 ? (
+                <p>Your cart is empty.</p>
+              ) : (
+                <div className="space-y-4">
+                  {cartItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="border p-4 flex items-center justify-between"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-16 h-16 object-cover"
+                        />
+                        <div>
+                          <h2 className="text-lg font-semibold">{item.name}</h2>
+                          <p className="text-gray-700">₹{item.price}</p>
+                        </div>
+                      </div>
+
+
+                      <div>
+                        <label htmlFor={`quantity-${item.id}`} className="mr-2">
+                          Quantity:
+                        </label>
+                        <input
+                          id={`quantity-${item.id}`}
+                          type="number"
+                          value={item.quantity}
+                          min="1"
+                          className="border w-20 text-center mr-5 px-4 py-2 bg-red-500 text-white rounded-md font-bold"
+                          onChange={(e) => handleQuantityChange(item.id, e)}
+                        />
+
+
+
+                          <button
+                              className="bg-gray-200 hover:bg-gray-100 text-black px-2 py-2 rounded text-sm"
+                              onClick={() => removeFromCart(item.id)}
+                              >
+                              Remove
+                          </button>
+
+                          <p className="text-right font-semibold">Net Price: ₹{calculateNetPrice(item)}</p>
+
+                      </div>
+                    </div>
+                    
+                  ))}
+
+                      <div className="flex justify-end mt-4 mr-56">
+                          <p className="font-bold text-xl">Grand Total: ₹{total}</p>
+                      </div>
+
+                      <Link href="/checkout" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-4 rounded mt-4 ml-56">
+                          Proceed to Checkout
+                      </Link>
+
                 </div>
 
+              )}
+            </div>
 
-                <div>
-                  <label htmlFor={`quantity-${item.id}`} className="mr-2">
-                    Quantity:
-                  </label>
-                  <input
-                    id={`quantity-${item.id}`}
-                    type="number"
-                    value={item.quantity}
-                    min="1"
-                    className="border w-20 text-center mr-5 px-4 py-2 bg-red-500 text-white rounded-md font-bold"
-                    onChange={(e) => handleQuantityChange(item.id, e)}
-                  />
+        </div>
 
 
 
-                    <button
-                        className="bg-gray-200 hover:bg-gray-100 text-black px-2 py-2 rounded text-sm"
-                        onClick={() => removeFromCart(item.id)}
-                        >
-                        Remove
-                    </button>
 
-                    <p className="text-right font-semibold">Net Price: ₹{calculateNetPrice(item)}</p>
+
+
+
+
+
+        <div className="block md:hidden">
+
+              <div className="p-8">
+              <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
+              {cartItems.length === 0 ? (
+                <p>Your cart is empty.</p>
+              ) : (
+                <div className="space-y-4">
+                  {cartItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="border p-4 flex items-center justify-between"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-16 h-16 object-cover"
+                        />
+                        <div>
+                          <h2 className="text-lg font-semibold">{item.name}</h2>
+                          <p className="text-gray-700">₹{item.price}</p>
+                        </div>
+                      </div>
+
+
+                      <div>
+                        <label htmlFor={`quantity-${item.id}`} className="">
+                          {/* Quantity: */}
+                        </label>
+                        <input
+                          id={`quantity-${item.id}`}
+                          type="number"
+                          value={item.quantity}
+                          min="1"
+                          className="border w-20 text-center py-2 bg-red-500 text-white rounded-md font-bold"
+                          onChange={(e) => handleQuantityChange(item.id, e)}
+                        />
+
+                          <button
+                              className="bg-gray-200 hover:bg-gray-100 text-black py-2 rounded text-sm mt-2 w-20"
+                              onClick={() => removeFromCart(item.id)}
+                              >
+                              Remove
+                          </button>
+
+                          <p className="font-semibold mt-5">Net Price: ₹{calculateNetPrice(item)}</p>
+
+                      </div>
+                    </div>
+                    
+                  ))}
+
+                      <p className="font-bold text-xl">Grand Total: ₹{total}</p>
+
+                      <Link href="/checkout" className="flex justify-center items-center" >
+                          
+                          <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-4 rounded text-center mt-10 font-bold text-lg ">
+                              Proceed to Checkout
+                          </button>
+                          
+                      </Link>
 
                 </div>
-              </div>
-              
-            ))}
 
-                <div className="flex justify-end mt-4 mr-56">
-                    <p className="font-bold text-xl">Grand Total: ₹{total}</p>
-                </div>
+              )}
+            </div>
 
-                <Link href="/checkout" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-4 rounded mt-4 ml-56">
-                    Proceed to Checkout
-                </Link>
-
-          </div>
-
-        )}
-      </div>
+        </div>
+      
+      
+      
+      </>
+      
 
       
 

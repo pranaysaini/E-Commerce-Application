@@ -5,7 +5,7 @@ export default function ProductCard({ product }) {
     <Link href={`/products/${product.id}`} >
 
       
-      <div className="border p-4 cursor-pointer hover:shadow-xl">
+      <div className="p-4 mt-10 cursor-pointer hover:shadow-xl h-4/5">
             <img    
               src={product.image}
               alt={product.name}
@@ -13,8 +13,8 @@ export default function ProductCard({ product }) {
             />
 
             <div className="flex flex-col justify-center items-center">
-                <h3 className="text-lg font-bold mt-2">{product.name}</h3>
-                <p className="text-gray-700">₹{product.price}</p>
+                <h3 className="text-lg font-bold mt-2 text-center">{product.name}</h3>
+                <p className="text-md mt-2">₹{product.price}</p>
             </div>
       
       

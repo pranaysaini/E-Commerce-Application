@@ -59,42 +59,102 @@ const Profile = () => {
     }
 
     return (
-        <div className='flex flex-col w-full justify-center items-center'>
-            {/* <h1 className='mt-10 ml-10 text-3xl font-bold'>Profile</h1> */}
-            <p className='mt-10 ml-10 text-5xl font-extrabold bg-gradient-to-r from-slate-900 via-orange-500 to-slate-50 bg-clip-text text-transparent leading-normal'>{user.email}</p>
-            <h2 className='mt-12 ml-10 text-3xl font-semibold'>Order History</h2>
-            {orders.length > 0 ? (
-                <ul className='grid grid-cols-4 mt-6 '>
-                    {orders.map((order) => (
-                        <li key={order.id} className={`text-white font-semibold bg-gradient-to-r from-stone-500 to-stone-700 rounded-lg p-4 mb-5 ${order%4 === 0 ? '' : 'ml-5'} ${order%3 === 0 ? '' : 'mr-5'}`}>
-                        <p>Order ID: {order.id}</p>
-                        {/* Check for `orderDate` existence and validity before calling toDate() */}
-                        {order.orderDate && order.orderDate.toDate && (
-                            <p>Order Date: {order.orderDate.toDate().toLocaleString()}</p>
-                        )}
-                        <p>Order Total: ₹{order.totalAmount.toFixed(2)}</p> {/* Format total to 2 decimal places */}
-                        <p>Status: {order.status}</p>
-                        {/* Optionally display additional order details based on your data structure */}
-                        {order.items && (
-                            <div>
-                                <h4>Order Items:</h4>
-                                <ul>
-                                    {order.items.map((item, index) => (
-                                    <li key={index}>
-                                        {item.name} (Quantity: {item.quantity})
-                                    </li>
-                                    ))}
-                            </ul>
-                        </div>
+
+        <>
+            <div className='hidden md:block'>
+                    <div className='flex flex-col w-full justify-center items-center'>
+                    {/* <h1 className='mt-10 ml-10 text-3xl font-bold'>Profile</h1> */}
+                    <p className='mt-10 ml-10 text-5xl font-extrabold bg-gradient-to-r from-slate-900 via-orange-500 to-slate-50 bg-clip-text text-transparent leading-normal'>{user.email}</p>
+                    <h2 className='mt-12 ml-10 text-3xl font-semibold'>Order History</h2>
+                    {orders.length > 0 ? (
+                        <ul className='grid grid-cols-4 mt-6 '>
+                            {orders.map((order) => (
+                                <li key={order.id} className={`text-white font-semibold bg-gradient-to-r from-stone-500 to-stone-700 rounded-lg p-4 mb-5 ${order%4 === 0 ? '' : 'ml-5'} ${order%3 === 0 ? '' : 'mr-5'}`}>
+                                <p>Order ID: {order.id}</p>
+                                {/* Check for `orderDate` existence and validity before calling toDate() */}
+                                {order.orderDate && order.orderDate.toDate && (
+                                    <p>Order Date: {order.orderDate.toDate().toLocaleString()}</p>
+                                )}
+                                <p>Order Total: ₹{order.totalAmount.toFixed(2)}</p> {/* Format total to 2 decimal places */}
+                                <p>Status: {order.status}</p>
+                                {/* Optionally display additional order details based on your data structure */}
+                                {order.items && (
+                                    <div>
+                                        <h4>Order Items:</h4>
+                                        <ul>
+                                            {order.items.map((item, index) => (
+                                            <li key={index}>
+                                                {item.name} (Quantity: {item.quantity})
+                                            </li>
+                                            ))}
+                                    </ul>
+                                </div>
+                            )}
+                            </li>
+                        ))}
+                        </ul>
+                    ) : (
+                        <p>You don't have any orders yet.</p>
                     )}
-                    </li>
-                ))}
-                </ul>
-            ) : (
-                <p>You don't have any orders yet.</p>
-            )}
-            <button onClick={handleSignOut} className='mt-10 bg-blue-600 hover:bg-blue-300 hover:text-black rounded text-white h-10 w-40'>Sign Out</button>
-        </div>
+                    <button onClick={handleSignOut} className='mt-10 bg-blue-600 hover:bg-blue-300 hover:text-black rounded text-white h-10 w-40'>Sign Out</button>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div className='block md:hidden'>
+                    <div className='flex flex-col justify-center items-center'>
+                            <button onClick={handleSignOut} className='mt-10 mr-auto bg-blue-600 hover:bg-blue-300 hover:text-black rounded text-white h-10 w-40'>Sign Out</button>
+                    {/* <h1 className='mt-10 ml-10 text-3xl font-bold'>Profile</h1> */}
+                            <p className='mt-10 ml-10 text-3xl font-extrabold bg-gradient-to-r from-slate-900 via-orange-500 to-slate-50 bg-clip-text text-transparent leading-normal'>{user.email}</p>
+                            <h2 className='mt-12 ml-10 text-3xl font-semibold'>Order History</h2>
+                            {orders.length > 0 ? (
+                                <ul className='grid grid-cols-1 mt-6 '>
+                                    {orders.map((order) => (
+                                        <li key={order.id} className={`text-white font-semibold bg-gradient-to-r from-stone-500 to-stone-700 rounded-lg p-4 mb-5 ${order%4 === 0 ? '' : 'ml-5'} ${order%3 === 0 ? '' : 'mr-5'}`}>
+                                        <p>Order ID: {order.id}</p>
+                                        {/* Check for `orderDate` existence and validity before calling toDate() */}
+                                        {order.orderDate && order.orderDate.toDate && (
+                                            <p>Order Date: {order.orderDate.toDate().toLocaleString()}</p>
+                                        )}
+                                        <p>Order Total: ₹{order.totalAmount.toFixed(2)}</p> {/* Format total to 2 decimal places */}
+                                        <p>Status: {order.status}</p>
+                                        {/* Optionally display additional order details based on your data structure */}
+                                        {order.items && (
+                                            <div>
+                                                <h4>Order Items:</h4>
+                                                <ul>
+                                                    {order.items.map((item, index) => (
+                                                    <li key={index}>
+                                                        {item.name} (Quantity: {item.quantity})
+                                                    </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    </li>
+                                ))}
+                                </ul>
+                            ) : (
+                                <p>You don't have any orders yet.</p>
+                            )}
+                    
+                </div>
+
+
+            </div>
+        
+        
+        </>
+        
     );
 };
 
