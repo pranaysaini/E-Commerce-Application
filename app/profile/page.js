@@ -59,7 +59,7 @@ const Profile = () => {
     }
 
     return (
-        <div className='flex flex-col  h-screen w-full'>
+        <div className='flex flex-col w-full justify-center items-center'>
             {/* <h1 className='mt-10 ml-10 text-3xl font-bold'>Profile</h1> */}
             <p className='mt-10 ml-10 text-5xl font-extrabold bg-gradient-to-r from-slate-900 via-orange-500 to-slate-50 bg-clip-text text-transparent leading-normal'>{user.email}</p>
             <h2 className='mt-12 ml-10 text-3xl font-semibold'>Order History</h2>
@@ -93,7 +93,7 @@ const Profile = () => {
             ) : (
                 <p>You don't have any orders yet.</p>
             )}
-            <button onClick={handleSignOut}>Sign Out</button>
+            <button onClick={handleSignOut} className='mt-10 bg-blue-600 hover:bg-blue-300 hover:text-black rounded text-white h-10 w-40'>Sign Out</button>
         </div>
     );
 };
