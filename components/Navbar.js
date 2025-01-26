@@ -26,31 +26,76 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="p-4 text-indigo-900 font-semibold text-lg sticky top-0 shadow-lg bg-white">
-            <ul className="flex justify-center items-center">
-                {/* <li className="mr-auto hover:underline"><Link href="/products">Products</Link></li> */}
-                <li><Link href="/"> <img src="/assets/logo.png" className='h-14' /></Link></li>
-        
-                {/* <li className='text-5xl font-mono'><Link href="/"> Grand Bazar </Link></li> */}
-                
-                <div className='ml-auto flex space-x-4'>
-                    
 
-                    {user ? ( // User is logged in
-                        <>
-                            <li><Link href="/cart" onClick={handleCartClick} className='hover:underline'>Cart</Link></li>
-                            <li className='hover:underline'><Link href="/profile">Profile</Link></li>
-                            {/* If you still want an "Account" link with more options: */}
-                            {/* <li><Link href="/account">Account</Link></li> */}
-                        </>
-                    ) : ( // User is not logged in
-                        <>
-                            <li className='hover:underline'><Link href="/auth/SignIn">Sign In</Link></li>
-                            <li className='hover:underline'><Link href="/auth/SignUp">Sign Up</Link></li>
-                        </>
-                    )}
-                </div>
-            </ul>
-        </nav>
+        <>
+
+            <div className='hidden md:block'>
+                    <nav className="p-4 text-indigo-900 font-semibold text-lg sticky top-0 shadow-lg bg-white">
+                        <ul className="flex justify-center items-center">
+                            {/* <li className="mr-auto hover:underline"><Link href="/products">Products</Link></li> */}
+                            <li><Link href="/"> <img src="/assets/logo.png" className='h-14' /></Link></li>
+                    
+                            {/* <li className='text-5xl font-mono'><Link href="/"> Grand Bazar </Link></li> */}
+                            
+                            <div className='ml-auto flex space-x-4'>
+                                
+
+                                {user ? ( // User is logged in
+                                    <>
+                                        <li><Link href="/cart" onClick={handleCartClick} className='hover:underline'>Cart</Link></li>
+                                        <li className='hover:underline'><Link href="/profile">Profile</Link></li>
+                                        {/* If you still want an "Account" link with more options: */}
+                                        {/* <li><Link href="/account">Account</Link></li> */}
+                                    </>
+                                ) : ( // User is not logged in
+                                    <>
+                                        <li className='hover:underline'><Link href="/auth/SignIn">Sign In</Link></li>
+                                        <li className='hover:underline'><Link href="/auth/SignUp">Sign Up</Link></li>
+                                    </>
+                                )}
+                            </div>
+                        </ul>
+                </nav>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div className='block md:hidden'>
+                    <nav className="p-4 text-indigo-900 font-semibold text-lg sticky top-0 shadow-lg bg-white">
+                        <ul className="flex justify-center items-center">
+                            <li><Link href="/"> <img src="/assets/logo.png" className='h-10 w-48' /></Link></li>
+                    
+                            {/* <li className='text-5xl font-mono'><Link href="/"> Grand Bazar </Link></li> */}
+                            
+                            <div className='ml-auto flex space-x-4'>
+                                
+
+                                {user ? ( // User is logged in
+                                    <>
+                                        <li><Link href="/cart" onClick={handleCartClick} className='hover:underline'>Cart</Link></li>
+                                        <li className='hover:underline'><Link href="/profile">Profile</Link></li>
+                                        {/* If you still want an "Account" link with more options: */}
+                                        {/* <li><Link href="/account">Account</Link></li> */}
+                                    </>
+                                ) : ( // User is not logged in
+                                    <>
+                                        <li className='hover:underline'><Link href="/auth/SignIn">Sign In</Link></li>
+                                        <li className='hover:underline'><Link href="/auth/SignUp">Sign Up</Link></li>
+                                    </>
+                                )}
+                            </div>
+                        </ul>
+                </nav>
+            </div>
+        
+        </>
+        
     );
 }
