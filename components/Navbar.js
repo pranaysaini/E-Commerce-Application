@@ -70,7 +70,7 @@ export default function Navbar() {
             <div className='block md:hidden'>
                     <nav className="p-4 text-indigo-900 font-semibold text-lg sticky top-0 shadow-lg bg-white">
                         <ul className="flex justify-center items-center">
-                            <li><Link href="/"> <img src="/assets/logo.png" className='h-10 w-48' /></Link></li>
+                            <li className=''><Link href="/"> <img src="/assets/logo.png" className='h-10 w-48 ' /></Link></li>
                     
                             {/* <li className='text-5xl font-mono'><Link href="/"> Grand Bazar </Link></li> */}
                             
