@@ -3,13 +3,16 @@ import { CartContext } from "@/app/context/cartContext";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
+
 export default function ProductList() {
   return (
 
     <>
 
+      
+
       <Link href='./ProductPage' >
-          <div className="hidden md:block">
+          <div className="hidden md:block">            
             <div>
                 <img src="/assets/Banners/Banner1/Banner1.webp"  alt="sale" className="mx-auto"/>
                 <div className="flex justify-center items-center gap-x-3 mt-5"> 

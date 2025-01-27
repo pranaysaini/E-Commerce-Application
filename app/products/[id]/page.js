@@ -5,6 +5,7 @@ import { CartContext } from "@/app/context/cartContext";
 import { useParams, useRouter } from "next/navigation";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { app } from '@/firebase'; // Path to your Firebase config
+import Link from "next/link";
 
 export default function ProductPage() {
   const params = useParams();
@@ -18,6 +19,7 @@ export default function ProductPage() {
   }
 
   const { addToCart } = useContext(CartContext);
+  const [showPopup, setShowPopup] = useState(false);
 
 
 
@@ -34,6 +36,11 @@ export default function ProductPage() {
     }
     // User is logged in, add to cart
     addToCart(product, quantity);
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false); // Hide popup on close button click
   };
 
 
@@ -43,6 +50,27 @@ export default function ProductPage() {
   return (
 
     <>
+
+      {showPopup && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white p-8 rounded-lg">
+            <p>Product added to cart!</p>
+
+            <div>
+                <button onClick={handleClosePopup} className="mt-4 bg-gray-200 px-4 py-2 rounded">
+                  Close
+                </button>
+
+                <Link href="/cart"> {/* Link wraps the button */}
+                  <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"> {/* Style as a button */}
+                    Go to Cart
+                  </button>
+                </Link>
+            </div>
+            
+          </div>
+        </div>
+      )}
 
         <div className="hidden md:block">
             <div className="p-8 flex justify-center gap-x-20 ">
