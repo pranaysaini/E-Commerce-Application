@@ -114,9 +114,6 @@ export default function ProductPage() {
 
 
 
-
-
-
         <div className="block md:hidden">
             <div className="p-8 flex flex-col justify-center gap-x-20 ">
               <img
@@ -149,12 +146,8 @@ export default function ProductPage() {
                   >
                     Add to Cart
                   </button>
-              </div>
-
-              
+              </div>              
             </div>
-
-
         </div>
     
     </>
