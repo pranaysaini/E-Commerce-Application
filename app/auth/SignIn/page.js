@@ -12,7 +12,17 @@ const SignIn = () => {
     const [error, setError] = useState(null);
     const router = useRouter();
     const auth = getAuth(app);
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
+
+    const [redirectUrl, setRedirectUrl] = useState('/');
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            setRedirectUrl(params.get('redirectUrl') || '/');
+        }
+    }, [auth, router, redirectUrl]);
+
 
 
 
